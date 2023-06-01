@@ -3,14 +3,14 @@ import 'package:inherited_notifier_demo/profile.dart';
 
 class ProfileState with ChangeNotifier {
 
-  Profile? _profile;
+  Profile _profile = Profile();
 
   void setProfile(Profile updatedProfile) {
     _profile = updatedProfile;
     notifyListeners();
   }
 
-  Profile get profile => _profile??Profile(name: 'Ninja', age: '28', work: 'InfoTech');
+  Profile get profile => _profile;
 }
 
 class ProfileNotifier extends InheritedNotifier<ProfileState> {

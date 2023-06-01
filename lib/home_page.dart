@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('InheriteNotifier Demo'),
+        title: const Text('InheritedNotifier Demo'),
       ),
       body: ProfileNotifier(
         profileState: state,
@@ -25,14 +25,23 @@ class HomePage extends StatelessWidget {
           builder: (context) {
             return Center(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Name: ${ProfileNotifier.of(context).name}'),
-                  Text('Age: ${ProfileNotifier.of(context).age} Years'),
-                  Text('Work: ${ProfileNotifier.of(context).work}')
-                ],
-              ),
+                crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Name : ${ProfileNotifier.of(context).name}',
+                  style: const TextStyle(fontSize: 20),
+                ),
+                Text(
+                  'Age : ${ProfileNotifier.of(context).age} ',
+                  style: const TextStyle(fontSize: 20),
+                ),
+                Text(
+                  'Hobby : ${ProfileNotifier.of(context).work}',
+                  style: const TextStyle(fontSize: 20),
+                )
+              ],
+            ),
             );
           }
         ),
@@ -64,18 +73,21 @@ class HomePage extends StatelessWidget {
                             border: OutlineInputBorder()
                         ),
                       ),
-                      ElevatedButton(onPressed: (){
-                        Profile profile= Profile(name: _nameController.text,
-                            age: _ageController.text,
-                            work: _workController.text);
-                        state.setProfile(profile);
-                        Navigator.pop(context);
-                        }, child: Text("Save"))
+                      ElevatedButton(
+                          onPressed: () {
+                            Profile profile = Profile(
+                                name: _nameController.text,
+                                age: _ageController.text,
+                                work: _workController.text);
+                            state.setProfile(profile);
+                            Navigator.pop(context);
+                          },
+                          child: const Text("Save"))
                     ],
                   );
                 });
-
-      }, label: Text('Set Profile')),
+          },
+          label: const Text('Set Profile')),
     );
   }
 }

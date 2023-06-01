@@ -1,7 +1,7 @@
-class Profile{
-  String name;
-  String age;
-  String work;
+class Profile {
+  String? name;
+  String? age;
+  String? work;
 
-  Profile({required this.name,required this.age,required this.work});
+  Profile({this.name = '', this.age = '', this.work = ''});
 }
