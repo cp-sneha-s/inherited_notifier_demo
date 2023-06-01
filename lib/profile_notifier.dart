@@ -1,32 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:inherited_notifier_demo/profile.dart';
 
-class ProfileState with ChangeNotifier {
+class UserState with ChangeNotifier {
+  User _user = User();
 
-  Profile _profile = Profile();
-
-  void setProfile(Profile updatedProfile) {
-    _profile = updatedProfile;
+  void setProfile(User updatedProfile) {
+    _user = updatedProfile;
     notifyListeners();
   }
 
-  Profile get profile => _profile;
+  User get user => _user;
 }
 
-class ProfileNotifier extends InheritedNotifier<ProfileState> {
-  const ProfileNotifier(
-      {super.key, required ProfileState profileState, required Widget child})
-      : super(notifier: profileState, child: child);
+class UserStateNotifier extends InheritedNotifier<UserState> {
+  const UserStateNotifier(
+      {super.key, required UserState userState, required super.child})
+      : super(notifier: userState);
 
-  static Profile of(BuildContext context) {
+  static User of(BuildContext context) {
     return context
-        .dependOnInheritedWidgetOfExactType<ProfileNotifier>()!
+        .dependOnInheritedWidgetOfExactType<UserStateNotifier>()!
         .notifier!
-        .profile;
+        .user;
   }
 
   @override
-  bool updateShouldNotify(covariant InheritedNotifier<ProfileState> oldWidget) {
-    return notifier!.profile != oldWidget.notifier!.profile;
+  bool updateShouldNotify(covariant InheritedNotifier<UserState> oldWidget) {
+    return notifier!.user != oldWidget.notifier!.user;
   }
 }
