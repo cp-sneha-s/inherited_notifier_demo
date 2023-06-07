@@ -1,7 +1,7 @@
 class User {
   String? name;
   String? age;
-  String? work;
+  String? hobby;
 
-  User({this.name = '', this.age = '', this.work = ''});
+  User({this.name = '', this.age = '', this.hobby = ''});
 }
